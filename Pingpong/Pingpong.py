@@ -37,20 +37,24 @@ class GameSprite(sprite.Sprite):
         window.blit(self.image, (self.rect.x, self.rect.y))
         
 class Player(GameSprite):
-    def update(self):
-        keys_pressed = key.get_pressed()
-
-        if keys_pressed[K_a] and self.rect.x > 5:
-           self.rect.x -= self.speed
-        if keys_pressed[K_d] and self.rect.x < 595:
-            self.rect.x += self.speed
-
-    def fire(self):
-        b1 = Bullet('b12.png', self.rect.centerx, self.rect.top, 10, 20, -15)
-        bullets.add(b1)
+    def update_l(self):
+        keys = key.get_pressed()
+        if keys[K_w] and self.rect.y >= 5:
+            self.rect.y -= self.speed
+        if keys[K_s] and self.rect.y <= 400:
+            self.rect.y += self.speed
+        
     
-sprite1 = Player('sprite1.png', 100, 400, 70, 80, 7)
-sprite2 = Player('sprite1.png', 100, 400, 70, 80, 7)
+    def update_r(self):
+        keys = key.get_pressed()
+        if keys[K_UP] and self.rect.y >= 5:
+            self.rect.y -= self.speed
+        if keys[K_DOWN] and self.rect.y <= 400:
+            self.rect.y += self.speed
+
+    
+sprite1 = Player('sprite1.png', 630, 250, 70, 80, 7)
+sprite2 = Player('sprite1.png', 5, 400, 70, 80, 7)
 
 
 finish = False
@@ -63,6 +67,10 @@ while game:
 
     if finish != True:
         window.blit(background, (0, 0))
+        sprite1.update_r()
+        sprite1.reset()
+        sprite2.update_l()
+        sprite2.reset()
        
 
     display.update()
