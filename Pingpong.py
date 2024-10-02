@@ -56,13 +56,18 @@ class Player(GameSprite):
 sprite1 = Player('sprite1.png', 630, 250, 70, 80, 7)
 sprite2 = Player('sprite1.png', 5, 400, 70, 80, 7)
 
+ball = GameSprite('mach.png', 350, 250, 50, 50, 7)
 
+speed_x = 3
+speed_y = 3
 finish = False
 
 while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
+
+    
         
 
     if finish != True:
@@ -71,6 +76,12 @@ while game:
         sprite1.reset()
         sprite2.update_l()
         sprite2.reset()
+        ball.reset()
+        ball.rect.x += speed_x
+        ball.rect.y += speed_y
+
+    if ball.rect.y > 450 or ball.rect.y < 0:
+       speed_y *= -1
        
 
     display.update()
