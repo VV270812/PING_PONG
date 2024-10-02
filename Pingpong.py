@@ -83,6 +83,14 @@ while game:
     
     if sprite.collide_rect(sprite1, ball) or sprite.collide_rect(sprite2, ball):
         speed_x *= -1
+
+    if ball.rect.x >= 670:
+        finish = True
+        window.blit(win2, (200,200))
+
+    if ball.rect.x <= -30:
+        finish = True
+        window.blit(lose, (200,200))
        
 
     display.update()
