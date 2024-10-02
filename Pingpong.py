@@ -53,8 +53,8 @@ class Player(GameSprite):
             self.rect.y += self.speed
 
     
-sprite1 = Player('sprite1.png', 630, 250, 70, 80, 7)
-sprite2 = Player('sprite1.png', 5, 400, 70, 80, 7)
+sprite1 = Player('sprite1.png', 630, 250, 50, 80, 7)
+sprite2 = Player('sprite1.png', 5, 400, 50, 80, 7)
 
 ball = GameSprite('mach.png', 350, 250, 50, 50, 7)
 
@@ -67,8 +67,6 @@ while game:
         if e.type == QUIT:
             game = False
 
-    
-        
 
     if finish != True:
         window.blit(background, (0, 0))
@@ -82,6 +80,9 @@ while game:
 
     if ball.rect.y > 450 or ball.rect.y < 0:
        speed_y *= -1
+    
+    if sprite.collide_rect(sprite1, ball) or sprite.collide_rect(sprite2, ball):
+        speed_x *= -1
        
 
     display.update()
